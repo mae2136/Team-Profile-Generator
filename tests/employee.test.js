@@ -2,6 +2,9 @@ const Employee = require(`../lib/Employee`);
 
 describe(`Employee class`, () => {
     describe("Initialization", () => {
+        it(`should create an object that is an instance of the Employee class`, () => {
+            expect(new Employee("Michael", 1, "email@email.com", 12)).toBeInstanceOf(Employee);
+        });
         it(`should create an object with a "name", "id", and "email" property with the arguments provided when called with the "new" keyword`, () => {
             const obj = new Employee("Michael", 1, "email@email.com");
 
