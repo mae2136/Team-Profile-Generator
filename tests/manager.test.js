@@ -1,4 +1,3 @@
-const { it } = require("jest-circus");
 // const Employee = require(`../lib/Employee`);
 const Manager = require(`../lib/Manager`);
 
