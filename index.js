@@ -1,8 +1,8 @@
-const fs = require(`fs`);
 const inquirer = require("inquirer");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
+const render = require(`./src/pageCreater`);
 
 // Role question prompt
 const rolePrompt = [
@@ -171,6 +171,7 @@ function askToContinue(askAgain) {
     } else {
         console.log(output);
         // Create HTML here.
+        render.renderPage(output);
     }
 }
 
