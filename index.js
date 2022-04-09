@@ -5,12 +5,14 @@ const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 
 // Role question prompt
-const rolePrompt = {
-    type: "list",
-    message: "Which type of team member do you want to add to your team?",
-    choices: [`Manager`, `Engineer`, `Intern`],
-    type: "role",
-};
+const rolePrompt = [
+    {
+        type: "list",
+        message: "Which type of team member do you want to add to your team?",
+        choices: [`Manager`, `Engineer`, `Intern`],
+        name: "role",
+    },
+];
 
 // Manager question prompt array
 const managerPrompt = [
@@ -102,35 +104,66 @@ const internPrompt = [
     },
 ];
 
+// Array of All objects that need to be output to html file.
 const output = [];
 
 function init() {
     // Helpful welcome describing purpose of program
     console.log("Let's help you build out your team!");
     // Prompts a list of roles for team members
-    inquirer.prompt(rolePrompt).then((answers) => {
-        const { role } = answers;
-        // Check role selected by user and ask next set of questions
-        if (role === 'Manager') {
-            answers = managerInfo();
-        } else if (role === 'Engineer') {
-            answers = engineerInfo();
-        } else {
-            answers = internInfo();
-        }
-    });
+    inquirer
+        .prompt(rolePrompt)
+        .then(answer => {
+            // Check role selected by user and ask next set of questions
+            const { role } = answer;
+            console.log(`Great! Let's fill out more info on the ${role}`);
+            if (role === 'Manager') {
+                managerInfo();
+            } else if (role === 'Engineer') {
+                engineerInfo();
+            } else {
+                internInfo();
+            }
+        });
 }
 
 function managerInfo() {
     inquirer.prompt(managerPrompt).then((answers) => {
-        output.push(answers);
-        if (answers.askAgain) {
-            init();
-        } else {
-            console.log(output);
-        }
+        const { name, id, email, officeNumber } = answers;
+        let managerObj = new Manager(name, id, email, officeNumber);
+        // Pushes created manager object in to output array
+        output.push(managerObj);
+        askToContinue(answers.askAgain);
     });
 };
+
+function engineerInfo() {
+    inquirer.prompt(engineerPrompt).then((answers) => {
+        const { name, id, email, github } = answers;
+        let engineerObj = new Engineer(name, id, email, github);
+        // Pushes created manager object in to output array
+        output.push(engineerObj);
+        askToContinue(answers.askAgain);
+    });
+};
+
+function internInfo() {
+    inquirer.prompt(internPrompt).then((answers) => {
+        const { name, id, email, school } = answers;
+        let internObj = new Intern(name, id, email, school);
+        // Pushes created manager object in to output array
+        output.push(internObj);
+        askToContinue(answers.askAgain);
+    });
+};
+
+function askToContinue(askAgain) {
+    if (askAgain) {
+        init();
+    } else {
+        console.log(output);
+    }
+}
 
 // Runs program
 init();
