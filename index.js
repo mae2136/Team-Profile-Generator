@@ -63,7 +63,7 @@ const engineerPrompt = [
     },
     {
         type: "input",
-        message: "What is the engineer's github page?",
+        message: "What is the engineer's github?",
         name: "github",
     },
     {
@@ -106,10 +106,17 @@ const internPrompt = [
 
 // Array of All objects that need to be output to html file.
 const output = [];
+// Variable to determine if we are looping the program or not.
+let loopAnswer = false;
 
 function init() {
-    // Helpful welcome describing purpose of program
-    console.log("Let's help you build out your team!");
+    // Helpful welcome describing purpose of program based on loopAnswer
+    if (loopAnswer) {
+        console.log("Let's add another person your team!");
+    } else {
+        console.log("Let's help you create your team!");
+    }
+
     // Prompts a list of roles for team members
     inquirer
         .prompt(rolePrompt)
@@ -159,6 +166,7 @@ function internInfo() {
 
 function askToContinue(askAgain) {
     if (askAgain) {
+        loopAnswer = true;
         init();
     } else {
         console.log(output);
