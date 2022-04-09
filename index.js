@@ -116,7 +116,7 @@ function init() {
         .then(answer => {
             // Check role selected by user and ask next set of questions
             const { role } = answer;
-            console.log(`Great! Let's fill out more info on the ${role}`);
+            console.log(`Great! Let's fill the ${role}'s info.`);
             if (role === 'Manager') {
                 managerInfo();
             } else if (role === 'Engineer') {
@@ -162,6 +162,7 @@ function askToContinue(askAgain) {
         init();
     } else {
         console.log(output);
+        // Create HTML here.
     }
 }
 
