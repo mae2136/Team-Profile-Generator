@@ -172,6 +172,7 @@ function askToContinue(askAgain) {
         console.log(output);
         // Create HTML here.
         render.renderPage(output);
+        return
     }
 }
 
