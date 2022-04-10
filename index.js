@@ -169,7 +169,6 @@ function askToContinue(askAgain) {
         loopAnswer = true;
         init();
     } else {
-        console.log(output);
         // Create HTML here.
         let newPage = new Render;
         newPage.renderPage(output);

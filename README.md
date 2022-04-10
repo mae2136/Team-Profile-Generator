@@ -32,7 +32,7 @@ Run the program in the terminal using "node index.js". It will ask you a series 
 ![Program Start](./lib/Images/)
 
 ```
-The program will loop forver until you ask it to stop, upon which is will create an html file in the dist folder.
+The program will loop forver until you ask it to stop, upon which it will create an html file in the dist folder.
 ```
 ![HTML Creation](./lib/Images/)
 

@@ -22,12 +22,13 @@ class Render {
         console.log(output);
         // For each object inside the output, loop through and create a template html card based on object's role property. Use Switch case
         for (let i = 0; i < output.length; i++) {
-            switch (output[i].getRole()) {
-                case "Manager":
-                    template += `<div class="managerCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
+            if (output[i].getRole() === "Manager") {
+                let { name, id, email, officeNumber } = output[i];
+
+                template += `<div class="managerCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
                 <header class="bg-blue-300 border rounded font-semibold text-center">
                     <div class="text-3xl my-1 p-2">
-                        <p>${output[i].getName()}</p>
+                        <p>${name}</p>
                     </div>
                     <div class="text-2xl my-1 p-2">
                         <i class="fa-solid fa-clipboard"></i> Manager
@@ -35,18 +36,20 @@ class Render {
                 </header>
                 <div>
                     <ul class="list-none my-2">
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${output[i].getID()}</li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Office Number:</span> ${output[i].getOffice()}</li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${output[i].getEmail()}">${output[i].getEmail()}</a></li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${id}</li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Office Number:</span> ${officeNumber}</li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${email}">${email}</a></li>
                     </ul>
                 </div>
-            </div>`
-                    break;
-                case "Engineer":
-                    template += `<div class="engiCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
+            </div>`;
+            }
+            else if (output[i].getRole() === "Engineer") {
+                let { name, id, email, github } = output[i];
+
+                template += `<div class="engiCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
                 <header class="bg-blue-300 border rounded font-semibold text-center">
                     <div class="text-3xl my-1 p-2">
-                        <p>${output[i].getName()}</p>
+                        <p>${name}</p>
                     </div>
                     <div class="text-2xl my-1 p-2">
                         <i class="fa-solid fa-shuttle-space"></i> Engineer
@@ -54,18 +57,19 @@ class Render {
                 </header>
                 <div>
                     <ul class="list-none my-2">
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${output[i].getID()}</li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${output[i].getEmail()}">${output[i].getEmail()}</a></li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Github:</span>  <a class="hover:text-blue-700" href="https://github.com/${output[i].getGithub()}">${output[i].getGithub()}</a></li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${id}</li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${email}">${email}</a></li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Github:</span>  <a class="hover:text-blue-700" href="https://github.com/${github}">${github}</a></li>
                     </ul>
                 </div>
-            </div>`
-                    break;
-                case "Intern":
-                    template += `<div class="internCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
+            </div>`;
+            } else {
+                let { name, id, email, school } = output[i];
+
+                template += `<div class="internCard max-w-sm rounded border shadow-lg p-3 min-w-[30%] m-4">
                 <header class="bg-blue-300 border rounded font-semibold text-center">
                     <div class="text-3xl my-1 p-2">
-                        <p>${output[i].getName()}</p>
+                        <p>${name}</p>
                     </div>
                     <div class="text-2xl my-1 p-2">
                         <i class="fa-solid fa-glasses"></i> Intern
@@ -73,13 +77,13 @@ class Render {
                 </header>
                 <div>
                     <ul class="list-none my-2">
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${output[i].getID()}</li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">School:</span> ${output[i].getSchool()}</li>
-                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${output[i].getEmail()}">${output[i].getEmail()}</a></li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">ID:</span> ${id}</li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">School:</span> ${school}</li>
+                        <li class="border my-1 py-1 px-2"><span class="font-semibold">Email:</span>  <a class="hover:text-blue-700" href="mailto:${email}">${email}</a></li>
                     </ul>
                 </div>
             </div>`
-                    break;
+                break;
             };
         };
 
