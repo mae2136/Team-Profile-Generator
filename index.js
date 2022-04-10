@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
-const render = require(`./src/pageCreater`);
+const Render = require(`./src/render`);
 
 // Role question prompt
 const rolePrompt = [
@@ -148,7 +148,7 @@ function engineerInfo() {
     inquirer.prompt(engineerPrompt).then((answers) => {
         const { name, id, email, github } = answers;
         let engineerObj = new Engineer(name, id, email, github);
-        // Pushes created manager object in to output array
+        // Pushes created engineer object in to output array
         output.push(engineerObj);
         askToContinue(answers.askAgain);
     });
@@ -158,7 +158,7 @@ function internInfo() {
     inquirer.prompt(internPrompt).then((answers) => {
         const { name, id, email, school } = answers;
         let internObj = new Intern(name, id, email, school);
-        // Pushes created manager object in to output array
+        // Pushes created intern object in to output array
         output.push(internObj);
         askToContinue(answers.askAgain);
     });
@@ -171,7 +171,8 @@ function askToContinue(askAgain) {
     } else {
         console.log(output);
         // Create HTML here.
-        render.renderPage(output);
+        let newPage = new Render;
+        newPage.renderPage(output);
         return
     }
 }
