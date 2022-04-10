@@ -23,19 +23,17 @@ This repository can be viewed at the following link: [Team Profile Gnerator Gith
   
 It should look like the following:
   
-![Screenshot](./lib/Images/)
+![Screenshot](./lib/Images/screenshot.PNG)
   
 How to use the program:
 ```
 Run the program in the terminal using "node index.js". It will ask you a series of questions on which roles you want to add to your team.
 ```
-![Program Start](./lib/Images/)
+![Program Start](./lib/Images/program_gif.gif)
 
 ```
-The program will loop forver until you ask it to stop, upon which it will create an html file in the dist folder.
+The program will loop forver until you ask it to stop, upon which it will create an html file in the /dist folder.
 ```
-![HTML Creation](./lib/Images/)
-
 ## Contributing
   
 Fork from my repo to contribute!
